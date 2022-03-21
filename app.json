@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "ignite-native-rentx",
+    "slug": "ignite-native-rentx",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "ignite-native-rentx"
+}
