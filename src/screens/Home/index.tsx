@@ -1,9 +1,16 @@
 import React from "react";
 import { StatusBar } from "react-native";
 
-import { Container, Header, CarCount, HeaderContent } from "./styles";
+import {
+  Container,
+  Header,
+  CarCount,
+  HeaderContent,
+  CarAvailables,
+} from "./styles";
 import Logo from "../../assets/logo.svg";
 import { RFValue } from "react-native-responsive-fontsize";
+import { Car } from "../../components/Car";
 
 export function Home() {
   return (
@@ -19,6 +26,10 @@ export function Home() {
           <CarCount>12 carros disponíveis</CarCount>
         </HeaderContent>
       </Header>
+      <CarAvailables>
+        <Car />
+        <Car />
+      </CarAvailables>
     </Container>
   );
 }

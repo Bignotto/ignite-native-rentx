@@ -1,6 +1,5 @@
 import { RFValue } from "react-native-responsive-fontsize";
 import styled from "styled-components/native";
-import theme from "../../global/styles/theme";
 
 export const Container = styled.View`
   flex: 1;
@@ -27,4 +26,10 @@ export const CarCount = styled.Text`
   font-size: ${RFValue(15)}px;
   font-family: ${({ theme }) => theme.fonts.primary_400};
   color: ${({ theme }) => theme.colors.text};
+`;
+
+export const CarAvailables = styled.View`
+  width: 100%;
+  background-color: ${({ theme }) => theme.colors.background_primary};
+  padding: 0 16px;
 `;
