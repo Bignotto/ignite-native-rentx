@@ -28,7 +28,6 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <StatusBar />
       <Home />
     </ThemeProvider>
   );
