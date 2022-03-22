@@ -7,19 +7,49 @@ import {
   CarName,
   RateText,
   RateValue,
-  CarIcon,
+  CarInfoWrapper,
+  DailyRateWrapper,
+  DailyRateTextWrapper,
+  CarImage,
 } from "./styles";
 
-export function Car() {
+import EnergyLogo from "../../assets/energy.svg";
+
+interface CarData {
+  brand: string;
+  name: string;
+  rent: {
+    period: string;
+    price: number;
+  };
+  thumbnail: string;
+}
+
+interface Props {
+  data: CarData;
+}
+
+export function Car({ data }: Props) {
   return (
     <Container>
       <InfoContainer>
-        <CarBrand>Audi</CarBrand>
-        <CarName>RS 5 Coupé</CarName>
-        <RateText>AO DIA</RateText>
-        <RateValue>R$ 120</RateValue>
-        <CarIcon />
+        <CarInfoWrapper>
+          <CarBrand>{data.brand}</CarBrand>
+          <CarName>{data.name}</CarName>
+        </CarInfoWrapper>
+        <DailyRateWrapper>
+          <DailyRateTextWrapper>
+            <RateText>{data.rent.period}</RateText>
+            <RateValue>{data.rent.price}</RateValue>
+          </DailyRateTextWrapper>
+          <EnergyLogo width={25} height={25} />
+        </DailyRateWrapper>
       </InfoContainer>
+      <CarImage
+        source={{
+          uri: data.thumbnail,
+        }}
+      />
     </Container>
   );
 }
