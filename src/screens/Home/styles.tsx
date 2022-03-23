@@ -1,4 +1,6 @@
+import { FlatList, FlatListProps } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
+import { CarData } from "./index";
 import styled from "styled-components/native";
 
 export const Container = styled.View`
@@ -28,8 +30,8 @@ export const CarCount = styled.Text`
   color: ${({ theme }) => theme.colors.text};
 `;
 
-export const CarAvailables = styled.View`
-  width: 100%;
-  background-color: ${({ theme }) => theme.colors.background_primary};
-  padding: 0 16px;
-`;
+export const CarAvailables = styled(
+  FlatList as new (props: FlatListProps<CarData>) => FlatList<CarData>
+).attrs({
+  showsVerticalScrollIndicator: false,
+})``;
