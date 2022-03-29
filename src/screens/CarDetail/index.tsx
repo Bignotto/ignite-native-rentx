@@ -24,7 +24,9 @@ import {
   Price,
   Rent,
   Acessories,
+  Footer,
 } from "./styles";
+import { Button } from "../../components/Button";
 
 export function CarDetail() {
   return (
@@ -50,7 +52,6 @@ export function CarDetail() {
             <Price>R$ 580,00</Price>
           </Rent>
         </Details>
-
         <Acessories>
           <Acessory name="380 km/h" icon={SpeedSvg} />
           <Acessory name="3.2s" icon={AccelSvg} />
@@ -59,13 +60,29 @@ export function CarDetail() {
           <Acessory name="Auto" icon={ExchangeSvg} />
           <Acessory name="2 pessoas" icon={PeopleSvg} />
         </Acessories>
-
+        <About>
+          Este é automóvel desportivo. Surgiu do lendário touro de lide
+          indultado na praça Real Maestranza de Sevilla. É um belíssimo carro
+          para quem gosta de acelerar.
+        </About>
+        <About>
+          Este é automóvel desportivo. Surgiu do lendário touro de lide
+          indultado na praça Real Maestranza de Sevilla. É um belíssimo carro
+          para quem gosta de acelerar.
+        </About>
         <About>
           Este é automóvel desportivo. Surgiu do lendário touro de lide
           indultado na praça Real Maestranza de Sevilla. É um belíssimo carro
           para quem gosta de acelerar.
         </About>
       </Content>
+      <Footer>
+        <Button
+          title="Escolher período do aluguel"
+          onPress={() => {}}
+          enabled={true}
+        />
+      </Footer>
     </Container>
   );
 }
