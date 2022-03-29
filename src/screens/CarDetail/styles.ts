@@ -84,7 +84,7 @@ export const About = styled.Text`
   line-height: ${RFValue(25)}px;
 `;
 
-export const Accessories = styled.View`
+export const Acessories = styled.View`
   width: 100%;
 
   flex-direction: row;
@@ -93,6 +93,7 @@ export const Accessories = styled.View`
   justify-content: space-between;
 
   margin-top: 16px;
+  margin-right: -8px;
 `;
 
 export const Footer = styled.View`
