@@ -156,7 +156,7 @@ export function Home() {
       <Header>
         <HeaderContent>
           <Logo width={RFValue(108)} height={RFValue(12)} />
-          <CarCount>12 carros disponíveis</CarCount>
+          <CarCount>{sampleCars.length} carros disponíveis</CarCount>
         </HeaderContent>
       </Header>
       <CarAvailables
