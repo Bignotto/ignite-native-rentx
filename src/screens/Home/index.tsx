@@ -11,6 +11,7 @@ import {
 import Logo from "../../assets/logo.svg";
 import { RFValue } from "react-native-responsive-fontsize";
 import { Car } from "../../components/Car";
+import { useNavigation } from "@react-navigation/native";
 
 export interface CarData {
   brand: string;
@@ -46,6 +47,12 @@ export function Home() {
     },
   ];
 
+  const navigation = useNavigation<any>();
+
+  function handleCarSelected() {
+    console.log("navegou! -----------------------------------------");
+    navigation.navigate("CarDetail");
+  }
   return (
     <Container>
       <StatusBar
@@ -62,7 +69,9 @@ export function Home() {
       <CarAvailables
         data={sampleCars}
         keyExtractor={(item) => item.name}
-        renderItem={({ item }) => <Car data={item} />}
+        renderItem={({ item }) => (
+          <Car data={item} onPress={handleCarSelected} />
+        )}
       />
     </Container>
   );

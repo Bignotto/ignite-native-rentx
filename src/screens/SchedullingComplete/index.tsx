@@ -6,10 +6,12 @@ import LogoSvg from "../../assets/logo_background_gray.svg";
 import DoneSvg from "../../assets/done.svg";
 import { Button } from "../../components/Button";
 import { useTheme } from "styled-components/native";
+import { useNavigation } from "@react-navigation/native";
 
 export function SchedullingComplete() {
   const { width } = useWindowDimensions();
   const theme = useTheme();
+  const navigation = useNavigation<any>();
 
   return (
     <Container>
@@ -26,7 +28,11 @@ export function SchedullingComplete() {
           Agora você só precisa ir{`\n`} até uma concesscionárioa RENTX{`\n`}{" "}
           pegar seu automóvel.
         </Message>
-        <Button color={theme.colors.shape_dark} title="Ok" />
+        <Button
+          color={theme.colors.shape_dark}
+          title="Ok"
+          onPress={() => navigation.popToTop()}
+        />
       </Content>
     </Container>
   );

@@ -39,14 +39,16 @@ import {
 } from "./styles";
 import { Button } from "../../components/Button";
 import { useTheme } from "styled-components/native";
+import { useNavigation } from "@react-navigation/native";
 
 export function SchedullingDetails() {
   const theme = useTheme();
+  const navigation = useNavigation<any>();
 
   return (
     <Container>
       <Header>
-        <BackButton />
+        <BackButton onPress={() => navigation.goBack()} />
       </Header>
       <CarImages>
         <ImageSlider
@@ -101,7 +103,11 @@ export function SchedullingDetails() {
         </RentalPrice>
       </Content>
       <Footer>
-        <Button title="Confirmar" onPress={() => {}} enabled={true} />
+        <Button
+          title="Confirmar"
+          onPress={() => navigation.navigate("SchedullingComplete")}
+          enabled={true}
+        />
       </Footer>
     </Container>
   );
