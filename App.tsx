@@ -16,6 +16,8 @@ import {
 import { Inter_400Regular, Inter_500Medium } from "@expo-google-fonts/inter";
 import { SchedullingDetails } from "./src/screens/SchedullingDetails";
 import { SchedullingComplete } from "./src/screens/SchedullingComplete";
+import { NavigationContainer } from "@react-navigation/native";
+import { Routes } from "./src/routes";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -30,7 +32,7 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <SchedullingComplete />
+      <Routes />
     </ThemeProvider>
   );
 }
