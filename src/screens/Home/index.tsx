@@ -11,6 +11,7 @@ import {
 import Logo from "../../assets/logo.svg";
 import { RFValue } from "react-native-responsive-fontsize";
 import { Car } from "../../components/Car";
+import { useNavigation } from "@react-navigation/native";
 
 export interface CarData {
   brand: string;
@@ -44,108 +45,14 @@ export function Home() {
       thumbnail:
         "https://e7.pngegg.com/pngimages/464/370/png-clipart-porsche-porsche.png",
     },
-    {
-      brand: "audi",
-      name: "RS 5 Coupé",
-      rent: {
-        period: "diária",
-        price: 120,
-      },
-      thumbnail:
-        "https://www.webmotors.com.br/imagens/prod/348415/AUDI_RS5_2.9_V6_TFSI_GASOLINA_SPORTBACK_QUATTRO_STRONIC_3484151711005714.png?s=fill&w=260&h=150&q=70&t=true",
-    },
-    {
-      brand: "prosche",
-      name: "Panamera",
-      rent: {
-        period: "diária",
-        price: 340,
-      },
-      thumbnail:
-        "https://e7.pngegg.com/pngimages/464/370/png-clipart-porsche-porsche.png",
-    },
-    {
-      brand: "audi",
-      name: "RS 5 Coupé",
-      rent: {
-        period: "diária",
-        price: 120,
-      },
-      thumbnail:
-        "https://www.webmotors.com.br/imagens/prod/348415/AUDI_RS5_2.9_V6_TFSI_GASOLINA_SPORTBACK_QUATTRO_STRONIC_3484151711005714.png?s=fill&w=260&h=150&q=70&t=true",
-    },
-    {
-      brand: "prosche",
-      name: "Panamera",
-      rent: {
-        period: "diária",
-        price: 340,
-      },
-      thumbnail:
-        "https://e7.pngegg.com/pngimages/464/370/png-clipart-porsche-porsche.png",
-    },
-    {
-      brand: "audi",
-      name: "RS 5 Coupé",
-      rent: {
-        period: "diária",
-        price: 120,
-      },
-      thumbnail:
-        "https://www.webmotors.com.br/imagens/prod/348415/AUDI_RS5_2.9_V6_TFSI_GASOLINA_SPORTBACK_QUATTRO_STRONIC_3484151711005714.png?s=fill&w=260&h=150&q=70&t=true",
-    },
-    {
-      brand: "prosche",
-      name: "Panamera",
-      rent: {
-        period: "diária",
-        price: 340,
-      },
-      thumbnail:
-        "https://e7.pngegg.com/pngimages/464/370/png-clipart-porsche-porsche.png",
-    },
-    {
-      brand: "audi",
-      name: "RS 5 Coupé",
-      rent: {
-        period: "diária",
-        price: 120,
-      },
-      thumbnail:
-        "https://www.webmotors.com.br/imagens/prod/348415/AUDI_RS5_2.9_V6_TFSI_GASOLINA_SPORTBACK_QUATTRO_STRONIC_3484151711005714.png?s=fill&w=260&h=150&q=70&t=true",
-    },
-    {
-      brand: "prosche",
-      name: "Panamera",
-      rent: {
-        period: "diária",
-        price: 340,
-      },
-      thumbnail:
-        "https://e7.pngegg.com/pngimages/464/370/png-clipart-porsche-porsche.png",
-    },
-    {
-      brand: "audi",
-      name: "RS 5 Coupé",
-      rent: {
-        period: "diária",
-        price: 120,
-      },
-      thumbnail:
-        "https://www.webmotors.com.br/imagens/prod/348415/AUDI_RS5_2.9_V6_TFSI_GASOLINA_SPORTBACK_QUATTRO_STRONIC_3484151711005714.png?s=fill&w=260&h=150&q=70&t=true",
-    },
-    {
-      brand: "prosche",
-      name: "Panamera",
-      rent: {
-        period: "diária",
-        price: 340,
-      },
-      thumbnail:
-        "https://e7.pngegg.com/pngimages/464/370/png-clipart-porsche-porsche.png",
-    },
   ];
 
+  const navigation = useNavigation<any>();
+
+  function handleCarSelected() {
+    console.log("navegou! -----------------------------------------");
+    navigation.navigate("CarDetail");
+  }
   return (
     <Container>
       <StatusBar
@@ -162,7 +69,9 @@ export function Home() {
       <CarAvailables
         data={sampleCars}
         keyExtractor={(item) => item.name}
-        renderItem={({ item }) => <Car data={item} />}
+        renderItem={({ item }) => (
+          <Car data={item} onPress={handleCarSelected} />
+        )}
       />
     </Container>
   );

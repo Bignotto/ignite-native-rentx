@@ -27,12 +27,14 @@ import {
   Footer,
 } from "./styles";
 import { Button } from "../../components/Button";
+import { useNavigation } from "@react-navigation/native";
 
 export function CarDetail() {
+  const navigation = useNavigation<any>();
   return (
     <Container>
       <Header>
-        <BackButton />
+        <BackButton onPress={() => navigation.goBack()} />
       </Header>
       <CarImages>
         <ImageSlider
@@ -65,21 +67,11 @@ export function CarDetail() {
           indultado na praça Real Maestranza de Sevilla. É um belíssimo carro
           para quem gosta de acelerar.
         </About>
-        <About>
-          Este é automóvel desportivo. Surgiu do lendário touro de lide
-          indultado na praça Real Maestranza de Sevilla. É um belíssimo carro
-          para quem gosta de acelerar.
-        </About>
-        <About>
-          Este é automóvel desportivo. Surgiu do lendário touro de lide
-          indultado na praça Real Maestranza de Sevilla. É um belíssimo carro
-          para quem gosta de acelerar.
-        </About>
       </Content>
       <Footer>
         <Button
           title="Escolher período do aluguel"
-          onPress={() => {}}
+          onPress={() => navigation.navigate("Schedulling")}
           enabled={true}
         />
       </Footer>
