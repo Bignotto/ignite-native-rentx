@@ -33,5 +33,8 @@ export const CarCount = styled.Text`
 export const CarAvailables = styled(
   FlatList as new (props: FlatListProps<CarData>) => FlatList<CarData>
 ).attrs({
+  contentContainerStyle: {
+    padding: 24,
+  },
   showsVerticalScrollIndicator: false,
 })``;

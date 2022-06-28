@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StatusBar } from "react-native";
 
 import {
@@ -12,6 +12,7 @@ import Logo from "../../assets/logo.svg";
 import { RFValue } from "react-native-responsive-fontsize";
 import { Car } from "../../components/Car";
 import { useNavigation } from "@react-navigation/native";
+import api from "../../services/api";
 
 export interface CarData {
   brand: string;
@@ -24,6 +25,9 @@ export interface CarData {
 }
 
 export function Home() {
+  const [cars, setCars] = useState<CarData[]>([]);
+  const [loading, setLoading] = useState(true);
+
   const sampleCars: CarData[] = [
     {
       brand: "audi",
@@ -50,9 +54,22 @@ export function Home() {
   const navigation = useNavigation<any>();
 
   function handleCarSelected() {
-    console.log("navegou! -----------------------------------------");
     navigation.navigate("CarDetail");
   }
+
+  useEffect(() => {
+    async function fetchCars() {
+      try {
+        const response = await api.get("/cars");
+        setCars(response.data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchCars();
+  }, []);
   return (
     <Container>
       <StatusBar
@@ -67,7 +84,7 @@ export function Home() {
         </HeaderContent>
       </Header>
       <CarAvailables
-        data={sampleCars}
+        data={cars}
         keyExtractor={(item) => item.name}
         renderItem={({ item }) => (
           <Car data={item} onPress={handleCarSelected} />
