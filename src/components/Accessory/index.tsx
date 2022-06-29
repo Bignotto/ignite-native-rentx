@@ -7,7 +7,7 @@ interface AcessoryProps {
 }
 
 import { Container, TextInfo } from "./styles";
-export function Acessory({ name, icon: Icon }: AcessoryProps) {
+export function Accessory({ name, icon: Icon }: AcessoryProps) {
   return (
     <Container>
       <Icon />

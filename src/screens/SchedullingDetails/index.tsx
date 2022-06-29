@@ -1,6 +1,6 @@
 import React from "react";
 import { Feather } from "@expo/vector-icons";
-import { Acessory } from "../../components/Acessory";
+import { Accessory } from "../../components/Accessory";
 import { BackButton } from "../../components/BackButton";
 import { ImageSlider } from "../../components/ImageSlider";
 
@@ -24,7 +24,7 @@ import {
   Period,
   Price,
   Rent,
-  Acessories,
+  Accessories,
   Footer,
   RentalPeriod,
   DateWrapper,
@@ -68,14 +68,14 @@ export function SchedullingDetails() {
             <Price>R$ 580,00</Price>
           </Rent>
         </Details>
-        <Acessories>
-          <Acessory name="380 km/h" icon={SpeedSvg} />
-          <Acessory name="3.2s" icon={AccelSvg} />
-          <Acessory name="800 hp" icon={ForceSvg} />
-          <Acessory name="Gasolina" icon={FuelSvg} />
-          <Acessory name="Auto" icon={ExchangeSvg} />
-          <Acessory name="2 pessoas" icon={PeopleSvg} />
-        </Acessories>
+        <Accessories>
+          <Accessory name="380 km/h" icon={SpeedSvg} />
+          <Accessory name="3.2s" icon={AccelSvg} />
+          <Accessory name="800 hp" icon={ForceSvg} />
+          <Accessory name="Gasolina" icon={FuelSvg} />
+          <Accessory name="Auto" icon={ExchangeSvg} />
+          <Accessory name="2 pessoas" icon={PeopleSvg} />
+        </Accessories>
         <RentalPeriod>
           <IconWrapper>
             <Feather name="calendar" size={24} color="#FFFFFF" />
