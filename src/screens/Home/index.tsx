@@ -1,5 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useNavigation } from "@react-navigation/native";
 import { StatusBar } from "react-native";
+import { RFValue } from "react-native-responsive-fontsize";
+import { Ionicons } from "@expo/vector-icons";
+
+import { Car } from "../../components/Car";
+import api from "../../services/api";
 
 import {
   Container,
@@ -7,52 +13,42 @@ import {
   CarCount,
   HeaderContent,
   CarAvailables,
+  MyCarsButton,
 } from "./styles";
 import Logo from "../../assets/logo.svg";
-import { RFValue } from "react-native-responsive-fontsize";
-import { Car } from "../../components/Car";
-import { useNavigation } from "@react-navigation/native";
-
-export interface CarData {
-  brand: string;
-  name: string;
-  rent: {
-    period: string;
-    price: number;
-  };
-  thumbnail: string;
-}
+import Load from "../../components/Load";
+import { CarDTO } from "../../dtos/CarDTO";
+import { useTheme } from "styled-components";
 
 export function Home() {
-  const sampleCars: CarData[] = [
-    {
-      brand: "audi",
-      name: "RS 5 Coupé",
-      rent: {
-        period: "diária",
-        price: 120,
-      },
-      thumbnail:
-        "https://www.webmotors.com.br/imagens/prod/348415/AUDI_RS5_2.9_V6_TFSI_GASOLINA_SPORTBACK_QUATTRO_STRONIC_3484151711005714.png?s=fill&w=260&h=150&q=70&t=true",
-    },
-    {
-      brand: "prosche",
-      name: "Panamera",
-      rent: {
-        period: "diária",
-        price: 340,
-      },
-      thumbnail:
-        "https://e7.pngegg.com/pngimages/464/370/png-clipart-porsche-porsche.png",
-    },
-  ];
+  const [cars, setCars] = useState<CarDTO[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const navigation = useNavigation<any>();
 
-  function handleCarSelected() {
-    console.log("navegou! -----------------------------------------");
-    navigation.navigate("CarDetail");
+  const theme = useTheme();
+
+  function handleCarSelected(car: CarDTO) {
+    navigation.navigate("CarDetail", { car });
   }
+
+  function handleNavigateToMyCars() {
+    navigation.navigate("MyCars");
+  }
+
+  useEffect(() => {
+    async function fetchCars() {
+      try {
+        const response = await api.get("/cars");
+        setCars(response.data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchCars();
+  }, []);
   return (
     <Container>
       <StatusBar
@@ -63,16 +59,28 @@ export function Home() {
       <Header>
         <HeaderContent>
           <Logo width={RFValue(108)} height={RFValue(12)} />
-          <CarCount>{sampleCars.length} carros disponíveis</CarCount>
+          <CarCount>{cars.length} carros disponíveis</CarCount>
         </HeaderContent>
       </Header>
-      <CarAvailables
-        data={sampleCars}
-        keyExtractor={(item) => item.name}
-        renderItem={({ item }) => (
-          <Car data={item} onPress={handleCarSelected} />
-        )}
-      />
+      {loading ? (
+        <Load />
+      ) : (
+        <CarAvailables
+          data={cars}
+          keyExtractor={(item) => item.name}
+          renderItem={({ item }) => (
+            <Car data={item} onPress={() => handleCarSelected(item)} />
+          )}
+        />
+      )}
+      <MyCarsButton>
+        <Ionicons
+          name="ios-car-sport"
+          size={32}
+          color={theme.colors.background_secondary}
+          onPress={handleNavigateToMyCars}
+        />
+      </MyCarsButton>
     </Container>
   );
 }
