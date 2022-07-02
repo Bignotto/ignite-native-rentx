@@ -32,6 +32,10 @@ export function Home() {
     navigation.navigate("CarDetail", { car });
   }
 
+  function handleNavigateToMyCars() {
+    navigation.navigate("MyCars");
+  }
+
   useEffect(() => {
     async function fetchCars() {
       try {
@@ -74,6 +78,7 @@ export function Home() {
           name="ios-car-sport"
           size={32}
           color={theme.colors.background_secondary}
+          onPress={handleNavigateToMyCars}
         />
       </MyCarsButton>
     </Container>
