@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useNavigation } from "@react-navigation/native";
-import { StatusBar } from "react-native";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { BackHandler, StatusBar } from "react-native";
 import { RFValue } from "react-native-responsive-fontsize";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -24,16 +24,17 @@ export function Home() {
   const [cars, setCars] = useState<CarDTO[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation();
+  const route = useRoute();
 
   const theme = useTheme();
 
   function handleCarSelected(car: CarDTO) {
-    navigation.navigate("CarDetail", { car });
+    navigation.navigate("CarDetail" as never, { car } as never);
   }
 
   function handleNavigateToMyCars() {
-    navigation.navigate("MyCars");
+    navigation.navigate("MyCars" as never);
   }
 
   useEffect(() => {
@@ -49,6 +50,7 @@ export function Home() {
     }
     fetchCars();
   }, []);
+
   return (
     <Container>
       <StatusBar
