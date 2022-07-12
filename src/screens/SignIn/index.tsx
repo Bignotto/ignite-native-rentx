@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
+import { Alert, Keyboard, KeyboardAvoidingView, StatusBar } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-// import {
-//   StatusBar,
-//   KeyboardAvoidingView,
-//   TouchableWithoutFeedback,
-//   Keyboard,
-//   Alert
-// } from 'react-native';
-// import * as Yup from 'yup';
+import * as Yup from "yup";
 
 import theme from "../../global/styles/theme";
 // import { useAuth } from '../../hooks/auth';
@@ -17,12 +11,7 @@ import { Input } from "../../components/Input";
 import { PasswordInput } from "../../components/PasswordInput";
 
 import { Container, Header, Title, SubTitle, Form, Footer } from "./styles";
-import {
-  Keyboard,
-  KeyboardAvoidingView,
-  StatusBar,
-  TouchableWithoutFeedback,
-} from "react-native";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 export function SignIn() {
   const [email, setEmail] = useState("");
@@ -31,30 +20,29 @@ export function SignIn() {
   const navigation = useNavigation<any>();
   // const { signIn } = useAuth();
 
-  // async function handleSignIn() {
-  //   try{
-  //     const schema = Yup.object().shape({
-  //       email: Yup.string()
-  //         .required('E-mail obrigatório')
-  //         .email('Digite um e-mail válido'),
-  //       password: Yup.string()
-  //         .required('A senha é obrigatória')
-  //     });
+  async function handleSignIn() {
+    try {
+      const schema = Yup.object().shape({
+        email: Yup.string()
+          .required("E-mail obrigatório")
+          .email("Digite um e-mail válido"),
+        password: Yup.string().required("A senha é obrigatória"),
+      });
 
-  //     await schema.validate({ email, password });
-
-  //     signIn({ email, password });
-  //   }catch(error){
-  //     if(error instanceof Yup.ValidationError){
-  //       Alert.alert('Opa', error.message);
-  //     }else{
-  //       Alert.alert(
-  //         'Erro na autenticação',
-  //         'Ocorreu um erro ao fazer login, verifique as credenciais'
-  //       )
-  //     }
-  //   }
-  // }
+      await schema.validate({ email, password });
+      Alert.alert("Login realizado com sucesso!");
+      //signIn({ email, password });
+    } catch (error) {
+      if (error instanceof Yup.ValidationError) {
+        Alert.alert("Opa", error.message);
+      } else {
+        Alert.alert(
+          "Erro na autenticação",
+          "Ocorreu um erro ao fazer login, verifique as credenciais"
+        );
+      }
+    }
+  }
 
   function handleNewAccount() {
     navigation.navigate("SignUpFirstStep");
@@ -99,7 +87,7 @@ export function SignIn() {
           <Footer>
             <Button
               title="Login"
-              // onPress={handleSignIn}
+              onPress={handleSignIn}
               enabled={true}
               loading={false}
             />
