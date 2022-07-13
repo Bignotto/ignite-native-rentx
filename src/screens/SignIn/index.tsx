@@ -45,7 +45,7 @@ export function SignIn() {
   }
 
   function handleNewAccount() {
-    navigation.navigate("SignUpFirstStep");
+    navigation.navigate("SignUp1");
   }
 
   return (
@@ -96,7 +96,7 @@ export function SignIn() {
               title="Criar conta gratuita"
               color={theme.colors.background_secondary}
               light
-              //onPress={handleNewAccount}
+              onPress={handleNewAccount}
               enabled={true}
               loading={false}
             />
