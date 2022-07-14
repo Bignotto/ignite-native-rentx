@@ -18,6 +18,7 @@ import { SchedullingDetails } from "./src/screens/SchedullingDetails";
 import { SchedullingComplete } from "./src/screens/SchedullingComplete";
 import { NavigationContainer } from "@react-navigation/native";
 import { Routes } from "./src/routes";
+import { AppProvider } from "./src/hooks";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -32,12 +33,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <StatusBar
-        barStyle="light-content"
-        backgroundColor="transparent"
-        translucent
-      />
-      <Routes />
+      <AppProvider>
+        <Routes />
+      </AppProvider>
     </ThemeProvider>
   );
 }
