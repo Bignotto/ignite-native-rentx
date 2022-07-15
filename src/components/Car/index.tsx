@@ -33,8 +33,8 @@ export function Car({ data, ...rest }: Props) {
         </CarInfoWrapper>
         <DailyRateWrapper>
           <DailyRateTextWrapper>
-            <RateText>{data.rent.period}</RateText>
-            <RateValue>{data.rent.price}</RateValue>
+            <RateText>{data.period}</RateText>
+            <RateValue>{`R$ ${data.price}`}</RateValue>
           </DailyRateTextWrapper>
           <MotorIcon />
         </DailyRateWrapper>

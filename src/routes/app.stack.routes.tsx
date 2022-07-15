@@ -22,12 +22,6 @@ export function AppStackRoutes() {
         headerShown: false,
       }}
     >
-      <Screen name="SignIn" component={SignIn} />
-      <Screen name="SignUp1" component={SignUpStep1} />
-      <Screen name="SignUp2" component={SignUpStep2} />
-      <Screen name="Confirmation" component={Confirmation} />
-
-      <Screen name="Splash" component={Splash} />
       <Screen name="Home" component={Home} />
       <Screen name="CarDetail" component={CarDetail} />
       <Screen name="Schedulling" component={Schedulling} />

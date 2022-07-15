@@ -1,7 +1,6 @@
 import React from "react";
-import { StatusBar } from "react-native";
+import "react-native-gesture-handler";
 import { ThemeProvider } from "styled-components";
-import { Home } from "./src/screens/Home";
 import AppLoading from "expo-app-loading";
 
 import theme from "./src/global/styles/theme";
@@ -14,11 +13,9 @@ import {
 } from "@expo-google-fonts/archivo";
 
 import { Inter_400Regular, Inter_500Medium } from "@expo-google-fonts/inter";
-import { SchedullingDetails } from "./src/screens/SchedullingDetails";
-import { SchedullingComplete } from "./src/screens/SchedullingComplete";
-import { NavigationContainer } from "@react-navigation/native";
 import { Routes } from "./src/routes";
 import { AppProvider } from "./src/hooks";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -32,10 +29,12 @@ export default function App() {
   if (!fontsLoaded) return <AppLoading />;
 
   return (
-    <ThemeProvider theme={theme}>
-      <AppProvider>
-        <Routes />
-      </AppProvider>
-    </ThemeProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <ThemeProvider theme={theme}>
+        <AppProvider>
+          <Routes />
+        </AppProvider>
+      </ThemeProvider>
+    </GestureHandlerRootView>
   );
 }

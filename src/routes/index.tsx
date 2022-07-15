@@ -1,14 +1,16 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { AppStackRoutes } from "./app.stack.routes";
+import { useAuth } from "../hooks/AuthContext";
+
+import { AppTabRoutes } from "./app.tab.routes";
+import { AuthRoutes } from "./auth.routes";
 
 export function Routes() {
+  const { user } = useAuth();
+
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <NavigationContainer>
-        <AppStackRoutes />
-      </NavigationContainer>
-    </GestureHandlerRootView>
+    <NavigationContainer>
+      {user?.id ? <AppTabRoutes /> : <AuthRoutes />}
+    </NavigationContainer>
   );
 }
