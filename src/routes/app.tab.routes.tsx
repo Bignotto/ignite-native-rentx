@@ -17,7 +17,9 @@ export function AppTabRoutes() {
 
   return (
     <Navigator
-      screenOptions={{ headerShown: false }}
+      screenOptions={{
+        headerShown: false,
+      }}
       // tabBarOptions={{
       //   activeTintColor: theme.colors.main,
       //   inactiveTintColor: theme.colors.text_detail,
@@ -30,7 +32,7 @@ export function AppTabRoutes() {
       // }}
     >
       <Screen
-        name="Home"
+        name="Dashboard"
         component={AppStackRoutes}
         options={{
           tabBarIcon: ({ color }) => (

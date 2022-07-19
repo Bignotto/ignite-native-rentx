@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Accessory } from "../../components/Accessory";
 import { BackButton } from "../../components/BackButton";
 import { ImageSlider } from "../../components/ImageSlider";
@@ -79,7 +79,7 @@ export function CarDetail() {
 
         <Animated.View style={[sliderHeaderAnimationStyle]}>
           <CarImages>
-            <ImageSlider imagesUrl={car.photos} />
+            <ImageSlider imagesUrl={car.photos.map((photo) => photo.photo)} />
           </CarImages>
         </Animated.View>
       </Animated.View>
@@ -100,8 +100,8 @@ export function CarDetail() {
             <Name>{car.name}</Name>
           </Description>
           <Rent>
-            <Period>{car.rent.period}</Period>
-            <Price>{car.rent.price}</Price>
+            <Period>{car.period}</Period>
+            <Price>{car.price}</Price>
           </Rent>
         </Details>
         <Accessories>
